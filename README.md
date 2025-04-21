@@ -141,7 +141,7 @@ Esta tarea simula el comportamiento de un usuario dentro del sistema de transpor
 
 #### 2.3. TareaControlador
 
-Esta tarea controla todo el sistema de transporte y será la encargada para la generación del resto de tareas cuando sea necesario. 
+Esta tarea controla todo el sistema de transporte y coordinará los usuarios con los autobuses presentes en el sistema. 
 
 
 ## Requisitos de Implementación
