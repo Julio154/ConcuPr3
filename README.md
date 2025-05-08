@@ -270,3 +270,24 @@ Dentro de nuestras estructuras de datos tenemos que diferenciar dos tipos:
 		-   duracion(Duration de la duración del segmento).
 
 - **De tipo de mensajes**
+	- **MensajeComando**: Clase usada por el controlador para enviar un mensaje a un autobus.
+		- comando(TipoComando CONSTANTE tipo de comando que se envía/ejecuta).
+	- **MensajeEstadoAutobus**: Mensaje que representa el estado actual de un autobus.
+		- idAutobus(String del identificador único del autobus).
+		- paradaActual(String de la parada en la que se encuentra el bus).
+		- ocupacion(Int de cuanta gente hay subida al bus).
+		- estados(EstadoBus CONSTANTES estado del autobus).
+	- **MensajeIncidencia**: Mensaje que representa una incidencia en un bus enviada por el controlador.
+		- idAutobus(String identificador único del autobus).
+		- tipoIncidencia(TipoIncidencia CONSTANTES define el tipo de la incidencia).
+		- descripcion(String descripción de la incidencia).
+	- **MensajeRespuestaRuta**: Mensaje que responde ante la solicitud de una ruta.
+		- idUsuario(String Identificador unico de un usuario).
+		- ruta(Lista de SegmentoRuta que describe el viaje).
+	- **MensajeSolicitudRuta**: Mensaje de solicitud de ruta por parte de un usuario.
+		- idUsuario(String Identificador único de cada usuario).
+		- origen(String Identificador de la parada origen del usuario).
+		- destino(String Identificador de la parada destino del usuario).
+		- criterio(CriterioRuta CONSTANTES Criterio de elección de la ruta).
+
+- **Buzones**
