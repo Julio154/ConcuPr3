@@ -220,3 +220,53 @@ Esta tarea controla todo el sistema de transporte y coordinará los usuarios con
 5.  **Documentación**:
     -   Documentar adecuadamente el código y las decisiones de diseño.
     -   Mantener un registro de los problemas encontrados y sus soluciones.
+
+
+# Resolución de la práctica
+## Analisis
+### Introducción
+Para esta practica vamos a solucionar un problema de paso de mensajes usando JMS y ActiveMQ. Para dicho ejercicio haremos una implementación para un sistema de transporte urbano.
+
+### Análisis
+La interacción será llevada a cabo por 3 actores principales:
+
+- **Autobuses**: Los autobuses serán los encargados de transportar a los usuarios y estarán asociados a una línea de buses concreta realizando un recorrido específico.
+- **Usuarios**: Son en esencia los pasajeros que desean llegar a su destino incluyendo trasbordo si fuesen necesarios.
+- **Controlador del sistema**: Coordina el sistema, calcula rutas y gestiona incidencias. Es básicamente el administrador.
+
+**Clases de datos**
+Dentro de nuestras estructuras de datos tenemos que diferenciar dos tipos:
+
+- **De carácter informativo**
+	- InfoAutobus: Representa un autobús.
+		- idAutobus(String identificador del bus). 
+		- idLinea(String identificador de la línea de dicho bus).
+		- paradaActual(String de la parada en la que se encuentra).
+		- paradaSiguiente(String de la parada a la que va).
+		- horaSalida(Instant de la hora a la que sale de la parada en la que se encuentra).
+		- horaLlegada(Instant de la hora de llegada a la siguiente parada).
+		- Estado(EstadoAutobus estado del autobus  definido en Constantes).
+		- ocupacion(Int de cuanta gente hay subida al bus).
+		- capacidad(Int de la capacidad máxima del mismo).
+	- InfoLinea: Representa a una línea concreta.
+		-  idLinea(String del identificador de la línea).
+		-   nombre(String del nombre de la línea).
+		-   paradas{Lista String}(Lista de IDs de las paradas de la línea).
+		-   Frecuencia(Int de la frecuencia de paso de los autobuses de la línea en minutos).
+		-   primeraSalida(Instant de la hora del primer servicio).
+		-   ultimaSalida(Instant de la hora del último servicio).
+	- InfoParada: Representa a una para de una o varias líneas de autobuses.
+		-   idParada(String del identificador único de la parada).
+		-   nombre(String del nombre de la parada).		    
+		-   latitud(Double de la latitud de la ubicación de la parada).		    
+		-   longitud(Double de la longitud de la ubicación de la parada).		    
+		-   lineas{Lista String}(Lista de identificadores de las líneas que pasan por la parada).
+	- SegmentoRuta: Representa la ruta que seguirán los distintos usuarios.
+		-   idLinea(String del identificador de la línea del segmento).		    
+		-   idParadaOrigen(String del identificador de la parada de origen del segmento).		    
+		-   idParadaDestino(String del identificador de la parada de destino del segmento).	    
+		-   horaSalida(Instant de la hora de salida del segmento).
+		-   horaLlegada(Instant de la hora de llegada al segmento).
+		-   duracion(Duration de la duración del segmento).
+
+- **De tipo de mensajes**
